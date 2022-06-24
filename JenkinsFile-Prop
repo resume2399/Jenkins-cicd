@@ -1,0 +1,18 @@
+node('my-swarm') {
+
+ MY_CONFIG = '18f06d17-837b-476d-a65e-e4b64eddb286'
+
+ try {
+
+     stage('prepare') {
+         configFileProvider([configFile(fileId: "$MY_CONFIG", variable: 'skip_tests')]) {
+             echo $skip_tests
+             assert $skip_tests == 'true'
+         }
+     }
+ } catch (Exception e) {
+     currentBuild.result = 'FAILURE'
+     print e
+ }
+}
+T
