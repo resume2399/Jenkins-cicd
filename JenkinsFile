@@ -13,12 +13,7 @@ pipeline {
             echo ("Starting the build application")
                // sh 'mvn test'
             }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
+                   }
         stage('Deliver') {
             steps {
                 echo ("Deliver Application")
